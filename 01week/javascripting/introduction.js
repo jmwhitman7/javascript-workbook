@@ -3,9 +3,9 @@
 // Write a JavaScript program to display the current day and time.
 
 function currentDateTime(){
-  console.log(new Date());
+  return(new Date());
 }
-currentDateTime();
+console.log(currentDateTime();
 
 
 // Write a JavaScript program to convert a number to a string.
@@ -13,7 +13,7 @@ currentDateTime();
 function numberToString(num){
   console.log(num.toString());
 }
-numberToString(10);
+return numberToString(10);
 
 
 
@@ -22,7 +22,7 @@ numberToString(10);
 function stringToNumber(number){
   console.log(parseInt(number));
 }
-stringToNumber(224);
+return stringToNumber(224);
 
 
 // Write a JavaScript program that takes in different datatypes and prints out whether they are a:
