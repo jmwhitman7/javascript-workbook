@@ -20,18 +20,23 @@ function printStacks() {
 }
 
 function movePiece() {
-  // Your code here
+  // move end of starting stack to available space
+  endStack.push(startStack.pop());
 
 }
 
 function isLegal() {
-  // Your code here
-
+  // if item is bigger than the piece in that field, it will not
+  // be able to land in that field
+  if (startStack[startStack.length - 1] < endStack[endStack.length -1]) {
+  return "Not an available move. Try again."
+} else {
+  movePiece();
 }
 
 function checkForWin() {
-  // Your code here
-
+  // When stack equals to 4 in c field
+  endStack.length === 4;
 }
 
 function towersOfHanoi(startStack, endStack) {

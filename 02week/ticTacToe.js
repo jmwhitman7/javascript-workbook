@@ -24,23 +24,26 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  // if horizontal grid has equal items, there is a win
+  if (())
 }
 
 function verticalWin() {
-  // Your code here
+  // if vertical grid has equal items, there is a win
+
 }
 
 function diagonalWin() {
-  // Your code here
+  // if both diagonal grids have equal items, there is a win
 }
 
 function checkForWin() {
-  // Your code here
+  //
 }
 
 function ticTacToe(row, column) {
   // Your code here
+  board[row][column] = playerTurn;
 }
 
 function getPrompt() {
