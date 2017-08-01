@@ -22,28 +22,64 @@ function printBoard() {
   console.log('  ---------');
   console.log('2 ' + board[2].join(' | '));
 }
-
+//code here
 function horizontalWin() {
-  // if horizontal grid has equal items, there is a win
-  
+  return board[0].every(square => square === playerTurn) || board[1].every(square => square === playerTurn) || board[2].every(square => square === playerTurn);
 }
 
 function verticalWin() {
-  // if vertical grid has equal items, there is a win
-
+  return [board[0][0], board[1][0], board[2][0]].every(square => square === playerTurn) || [board[0][1], board[1][1], board[2][1]].every(square => square === playerTurn) || [board[0][2], board[1][2], board[2][2]].every(square => square === playerTurn);
 }
 
 function diagonalWin() {
-  // if both diagonal grids have equal items, there is a win
+  return [board[0][0], board[1][1], board[2][2]].every(square => square === playerTurn) || [board[0][2], board[1][1], board[2][0]].every(square => square === playerTurn);
 }
 
 function checkForWin() {
-  //
+  if (horizontalWin()) {
+    printBoard();
+    console.log(`Congratulations player ${playerTurn}.  You won on the horizontal!`);
+    return true;
+  } else if (verticalWin()) {
+    printBoard();
+    console.log(`Congratulations player ${playerTurn}.  You won on the vertical!`);
+    return true;
+  } else if (diagonalWin()) {
+    printBoard();
+    console.log(`Congratulations player ${playerTurn}.  You won on the diagonal!`);
+    return true;
+  }
+  return false;
 }
 
 function ticTacToe(row, column) {
-  // Your code here
-  board[row][column] = playerTurn;
+
+  const validValue = (myIndex) => {
+    const valuesArr = [0,1,2];
+    return valuesArr.some(validIndex => myIndex == validIndex);
+  }
+
+  if (validValue(row) && validValue(column)) {
+    if (!board[row][column].trim() ) {
+      board[row][column] = playerTurn;
+
+      if (!checkForWin()) {
+        if (playerTurn === 'X') {
+          playerTurn = 'O';
+        } else {
+          playerTurn = 'X';
+        }
+        return false;
+      } else {
+        console.log(`The winner is player ${playerTurn}.  Start a new game`);
+        return true;
+      }
+    } else {
+      console.log('Please choose another square!  That one is taken!');
+    }
+  } else {
+    console.log('Please enter a valid index.  Valid values are 0, 1, 2');
+  }
 }
 
 function getPrompt() {
@@ -51,14 +87,15 @@ function getPrompt() {
   console.log("It's Player " + playerTurn + "'s turn.");
   rl.question('row: ', (row) => {
     rl.question('column: ', (column) => {
-      ticTacToe(row, column);
-      getPrompt();
+      if (!ticTacToe(row, column)) {
+        getPrompt();
+      } else {
+        process.exit(0);
+      }
     });
   });
 
 }
-
-
 
 // Tests
 
