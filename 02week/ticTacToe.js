@@ -25,7 +25,7 @@ function printBoard() {
 
 function horizontalWin() {
   // if horizontal grid has equal items, there is a win
-  if (())
+  
 }
 
 function verticalWin() {
