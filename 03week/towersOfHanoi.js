@@ -19,24 +19,48 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
-
+function movePiece(startStack, endStack) {
+  // Take the last value in the startStack, add it to the end of the endStack.
+  stacks[endStack].push(stacks[startStack].pop());
 }
 
-function isLegal() {
-  // Your code here
+function isLegal(startStack, endStack) {
+  if (startStack && endStack){
+    // Declare variables to hold the topmost piece in start and end stacks
+    const startIndex = stacks[startStack].length - 1;
+    const start = stacks[startStack][startIndex];
+    const endIndex = stacks[endStack].length - 1;
+    const end = stacks[endStack].length ? stacks[endStack][endIndex]: 0;
 
+    // If the piece to be moved is larger than the last piece on endStack,
+    console.log(start , end, start < end);
+    if (end === 0 || start < end) {
+      // If the piece to be moved is smaller than the last piece on endStack, the move is legal,
+      // Allow move
+      return 'legal move';
+    }
+  }
 }
 
 function checkForWin() {
-  // Your code here
-
+  // If the length of either b or c stack is 4
+  if (stacks.b.length === 4 || stacks.c.length === 4) {
+    // Return a You Win to the winner
+    return "You Win!";
+  }
 }
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
-
+  // If the move is legal
+  if (isLegal(startStack, endStack)) {
+    // Move the piece
+    movePiece(startStack, endStack);
+    // Check for a win
+    checkForWin();
+  } else {
+    console.log("Not a cool move! Choose another tower.");
+    return "Not a cool move! Choose another tower.";
+  }
 }
 
 function getPrompt() {
