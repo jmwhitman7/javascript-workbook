@@ -11,13 +11,45 @@ const rl = readline.createInterface({
 function pigLatin(word) {
 
   // Your code here
+  // Array will be the word argument as an array
+  var array = word.split('');
 
+  // Vowels going to test against
+  var vowels = ['a', 'e', 'i', 'o', 'u'];
+
+  // Create newWord var to hold reordered letters
+  var newWord = '';
+
+  // Loop through leters in word
+  for (var y = 0; y < word.length - 1; y++) {
+
+    // Loop through vowels
+    for (var i = 0; i < vowels.length - 1; i++) {
+
+
+      // If any letter in word matches a letter in vowwels
+      if (word[y] === vowels[i]) {
+
+
+        for (var x = y; x < word.length; x++) {
+          newWord = newWord + word[x];
+        }
+        for (var n = 0; n < y; n++) {
+          newWord = newWord + word[n];
+        }
+        return newWord + "ay";
+      }
+    }
+  }
 }
+
+translate("goat");
+
 
 
 function getPrompt() {
   rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
+    console.log(pigLatin(answer));
     getPrompt();
   });
 }
